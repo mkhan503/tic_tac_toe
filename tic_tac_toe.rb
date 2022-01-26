@@ -1,5 +1,8 @@
 # module containing methods to run the game
 module GridInputs
+  
+  private
+
   def input_symbols_in_grid(row, element, player)
     element = adjust_element_number(element)
     # if that block already has a symbol, then self.record_input
@@ -8,7 +11,7 @@ module GridInputs
       record_player_input(player)
     else
       @grid[row][element] = "  #{player.symbol}  "
-      print_grid
+      
     end
   end
 
@@ -93,6 +96,8 @@ end
 class Game
   include GridInputs
 
+  private
+
   def initialize
     @grid = {
               1 => ['     ', '|', '     ', '|', '     '],
@@ -109,9 +114,13 @@ class Game
     puts 'Enter name for Player 1'
     name = gets.chomp
     player1 = Player.new(name, 'X')
+    puts "#{player1.name} your symbol is #{player1.symbol}"
+    puts "\n"
     puts 'Enter name for Player 2'
     name = gets.chomp
     player2 = Player.new(name, 'O')
+    puts "#{player2.name} your symbol is #{player2.symbol}"
+    puts "\n"
     start_match(player1, player2)
   end
 
